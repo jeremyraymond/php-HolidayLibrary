@@ -1,6 +1,7 @@
 <?php
 
 namespace HolidayLibrary;
+use Iterator;
 /**
  * Holidays Library
  * 

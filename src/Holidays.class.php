@@ -210,6 +210,24 @@ class Holidays implements Iterator
     }
 
     /**
+     * Checks if a given date is a holiday
+     * @param string $date, in the format "2016-01-01"
+     * @return false if not a holiday, or the name of the holiday if it false on one
+     */
+    public function isHoliday($date)
+    {
+        foreach($this->holidays as $holiday_name => $holiday_date) {
+            if($date == $holiday_date) {
+                return $holiday_name;
+            }
+            else {
+                return false;
+            }
+        }
+
+    }
+
+    /**
      * Get the holiday array in JSON format
      * 
      * This is useful for passing to the jQuery date picker to exclude holiday dates

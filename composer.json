@@ -1,8 +1,11 @@
 {
   "name": "khatfield/php-HolidayLibrary",
   "autoload": {
+    "classmap": [
+      "src"
+    ],
     "psr-0" : {
-      "HolidayLibrary" : "src"
+      "HolidayLibrary" : "src/"
     }
   }
 }

@@ -1,0 +1,8 @@
+{
+  "name": "khatfield/php-HolidayLibrary",
+  "autoload": {
+    "psr-0" : {
+      "HolidayLibrary" : "src"
+    }
+  }
+}

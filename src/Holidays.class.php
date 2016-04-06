@@ -4,24 +4,25 @@ namespace HolidayLibrary;
 use Iterator;
 /**
  * Holidays Library
- * 
+ *
  * Calculates holiday dates for a given year
- * 
+ *
  * Fixed Holidays:
  *   New Year's Day   - 1/1
  *   Independence Day - 7/4
  *   Veteran's Day    - 11/11
+ *   Christmas Eve    - 12/24
  *   Christmas Day    - 12/25
- * 
+ *
  * Floating Holidays
  *   MLK Day      - 3rd Mon of Jan
  *   Pres Day     - 3rd Mon of Feb
  *   Memorial     - Last Mon of May
  *   Labor        - 1st Mon of Sep
- *   Columbus     - 2nd Mon of Oct 
+ *   Columbus     - 2nd Mon of Oct
  *   Thanksgiving - 4th Thurs of Nov
- * 
- * 
+ *
+ *
  * @author Keith Hatfield <keith.hatfield@gmail.com>
  *         @keithscode
  *
@@ -37,6 +38,7 @@ class Holidays implements Iterator
         "New Year's Day"   => array(1,1),
         "Independence Day" => array(7,4),
         "Veteran's Day"    => array(11,11),
+        "Christmas Eve"    => array(12,24),
         "Christmas"        => array(12,25)
     );
 
@@ -103,7 +105,7 @@ class Holidays implements Iterator
 
     /**
      * Constructor
-     * 
+     *
      * Sets the variables from the config file and does the initial calculation
      *
      * @param array $config Configuration info from the config file at config/Holidays.php
@@ -125,7 +127,7 @@ class Holidays implements Iterator
     /**
      * Public method to set the extra days from the config file
      *
-     * @param array $extras 
+     * @param array $extras
      */
     public function setExtras($extras = array())
     {
@@ -150,45 +152,45 @@ class Holidays implements Iterator
 
     /**
      * Setter for Good Friday Option
-     * 
+     *
      * @param bool $include Value to set for this option
      */
     public function setGoodFriday($include = false)
     {
         $this->good_friday  = $include;
-        
+
         $this->calcHolidays();
     }
 
     /**
      * Setter for Easter Option
-     * 
+     *
      * @param bool $include Value to set for this option
      */
     public function setEaster($include = false)
     {
         $this->easter      = $include;
-        
+
         $this->calcHolidays();
     }
 
     /**
      * Setter for Observance Option
-     * 
+     *
      * @param bool $include Value to set for this option
      */
     public function setObservances($include = true)
     {
         $this->observance  = $include;
-        
+
         $this->calcHolidays();
     }
 
     /**
      * Setter for the year
-     * 
+     *
      * Sets the year and recalculates the holidays
-     * 
+     *
      * @param int $year Int year value
      */
     public function setYear($year)
@@ -201,7 +203,7 @@ class Holidays implements Iterator
 
     /**
      * Getter for Holiday array
-     * 
+     *
      * @return array Local holiday array
      */
     public function getHolidays()
@@ -216,22 +218,21 @@ class Holidays implements Iterator
      */
     public function isHoliday($date)
     {
+
         foreach($this->holidays as $holiday_name => $holiday_date) {
             if($date == $holiday_date) {
                 return $holiday_name;
             }
-            else {
-                return false;
-            }
         }
+        return false;
 
     }
 
     /**
      * Get the holiday array in JSON format
-     * 
+     *
      * This is useful for passing to the jQuery date picker to exclude holiday dates
-     * 
+     *
      * @return string JSON encoded holiday array in a format compatible with jQuery Date Picker
      */
     public function getJson()
@@ -239,13 +240,13 @@ class Holidays implements Iterator
         foreach($this->holidays as $holiday){
             $return[] = array( date('n',strtotime($holiday)), date('j',strtotime($holiday)) );
         }
-        
+
         return json_encode($return);
     }
 
     /**
      * Get the date for a floating holiday
-     * 
+     *
      * @access private
      * @param  array  $data    The data for the floating holiday
      * @return string Holiday date in Y-m-d format
@@ -369,7 +370,7 @@ class Holidays implements Iterator
 
         //sort by date
         asort($this->holidays);
-        
+
         $this->rewind();
     }
 

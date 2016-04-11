@@ -1,5 +1,5 @@
 {
-  "name": "khatfield/php-HolidayLibrary",
+  "name": "spartannash/holidays",
   "autoload": {
     "classmap": [
       "src"

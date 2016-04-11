@@ -1,5 +1,6 @@
 # Holiday Library for PHP
-by [Keith Hatfield](http://keithscode.com)
+Originally by [Keith Hatfield](http://keithscode.com)
+Modified by Jeremy Raymond (https://github.com/jeremyraymond)
 
 This library will help with the calculation of Holiday dates for
 United States holidays.
@@ -8,17 +9,35 @@ United States holidays.
 Include the `Holidays.class.php` file in your PHP script:
 
     require_once('Holidays.class.php');
-    
+
+## Composer Installation
+Include this entry into your list of repositories in your project's composer.json file:
+"repositories": [
+    {
+        "type": "vcs",
+                "url": "https://github.com/SpartanNash/holidays"
+    }]
+
+And include this entry into the require array:
+"require": {
+    "spartannash/HolidayLibrary": "1.0.*"
+}
+
 ### Configuration
 The class takes 2 optional parameters: year and extra holidays. If omitted, the library will use the current year with no extra holidays.
 
     //use current year with no extra holidays
     $holidays = new Holidays();
 
+### Important function
+##### isHoliday($date)
+Param: $date, string, format: "2016-12-25"
+Returns: false if not a holiday, string of name of holiday if it is a holiday. Format: "Christmas Day"
+
 #### Options
-* Observance: Uses observed holiday date if holiday falls on the
-  weekend (default: true)
-* Easter: Option to include Easter in the list of holidays
+* __Observance__: Uses observed holiday date if holiday falls on the
+  weekend (default: true). __This is an important consideration__
+* __Easter__: Option to include Easter in the list of holidays
   (default: false)
 * Good Friday: Option to include Good Friday in the list of
   Holidays (default: false)
@@ -66,6 +85,7 @@ All types will be combined in the extra array
 * New Year's Day   - 1/1
 * Independence Day - 7/4
 * Veteran's Day    - 11/11
+* Christmas Eve    - 12/24
 * Christmas Day    - 12/25
 * MLK Day          - 3rd Mon of Jan
 * Pres Day         - 3rd Mon of Feb

@@ -4,7 +4,7 @@
     "classmap": [
       "src"
     ],
-    "psr-0" : {
+    "psr-4" : {
       "HolidayLibrary" : "src/"
     }
   }
